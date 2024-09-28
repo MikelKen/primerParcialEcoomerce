@@ -1,10 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadProduct from '../components/UploadProduct'
+import SummaryApi from '../common'
+import AdminProductCard from '../components/AdminProductCard'
 
 const AllProducts = () => {
 
   const  [openUploadProduct,setUploadProduct] = useState(false)
+  const [allProduct, setAllProduct] = useState([])
 
+  const fetchAllProduct = async()=>{
+    const response = await fetch(SummaryApi.allProduct.url)
+    const dataResponse = await response.json()
+
+    setAllProduct(dataResponse?.data || [])
+  }
+
+  useEffect(()=>{
+    fetchAllProduct()
+  },[])
 
   return (
     <div>
@@ -13,10 +26,23 @@ const AllProducts = () => {
         <button className='border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all py-1 px-3 rounded-full'onClick={()=>setUploadProduct(true)}>Update Product</button>
       </div>
 
+      {/**all product */}
+      <div className='flex items-center flex-wrap gap-5 py-4 h-[calc(100vh-190px)] overflow-y-scroll'>
+        {
+          allProduct.map((product,index)=>{
+            return (
+              <AdminProductCard data={product} key={index+"allProduct"} fetchdata={fetchAllProduct}/>
+            )
+          })
+        }
+      </div>
+
+
+
       {/**upload product component */}
       {
         openUploadProduct && (
-          <UploadProduct onClose={()=>setUploadProduct(false)}/>
+          <UploadProduct onClose={()=>setUploadProduct(false)} fetchData={fetchAllProduct}/>
         )
       }
     </div>

@@ -15,8 +15,8 @@ const Login = () => {
     })
 
     const navigate = useNavigate()
-    const { fetchUserDetails } = useContext(Context)
-
+    const { fetchUserDetails,fetchUserAddCart } = useContext(Context)
+    
     const handleOnChange = (e) => {
         const { name, value } = e.target
         
@@ -36,17 +36,18 @@ const Login = () => {
           
             headers : {
                 Accept: "application/json",
-                "content-type" : "application/json"
+                "Content-type" : "application/json"
             },
             body : JSON.stringify(data)
         })
         const dataApi = await dataResponse.json()
-        console.log("dataApi: ",data)
+        console.log("dataApi: ",dataApi)
         if(dataApi.success){
             localStorage.setItem("authorization", dataApi.data);
             toast.success(dataApi.message)
             navigate("/")
             fetchUserDetails()
+            fetchUserAddCart()
         }
 
         if(dataApi.error){

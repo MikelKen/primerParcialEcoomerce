@@ -9,7 +9,8 @@ const productCategory = [
     { id : 8, label : "Skirts", value : "skirts" },
     { id : 9, label : "Sweaters", value : "sweaters" },
     { id : 10, label : "Jeans", value : "jeans" },
-    { id : 11, label : "Coats", value : "coats" }
+    { id : 11, label : "Coats", value : "coats" },
+    { id : 12, label : "Boots", value : "boots" }
 
 ]
 

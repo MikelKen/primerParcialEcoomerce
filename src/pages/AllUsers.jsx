@@ -21,11 +21,13 @@ const AllUsers = () => {
       headers: {
         Accept: "application/json",
         "content-type": "application/json",
-        authorization: localStorage.getItem("authorization"),
+
+        Authorization: `Bearer ${localStorage.getItem("authorization")}`,
       },
     });
 
     const dataResponse = await fetchData.json();
+    console.log("todos los usuarios::::: ",dataResponse)
 
     if (dataResponse.success) {
       setAllUsers(dataResponse.data);

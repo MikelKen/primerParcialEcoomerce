@@ -25,7 +25,7 @@ const ChangeUserRole = ({
         headers: {
             Accept: "application/json",
            "content-type" : "application/json",
-           authorization: localStorage.getItem("authorization"),
+           Authorization: `Bearer ${localStorage.getItem("authorization")}`,
         },
         body : JSON.stringify({
             userId : userId,

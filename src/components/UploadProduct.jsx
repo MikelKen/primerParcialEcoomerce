@@ -9,7 +9,8 @@ import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 
 const UploadProduct = ({
-  onClose
+  onClose,
+  fetchData
 }) => {
 
   const [data,setData] = useState({
@@ -69,7 +70,8 @@ const UploadProduct = ({
       headers: {
          Accept: "application/json",
         "content-type" : "application/json",
-        authorization: localStorage.getItem("authorization"),
+        credentials : 'include',
+        Authorization: `Bearer ${localStorage.getItem("authorization")}`,
       },
       body : JSON.stringify(data)
     })
@@ -78,7 +80,8 @@ const UploadProduct = ({
 
     if(responseData.success){
       toast.success(responseData?.message)
-      onclose()
+      onClose()
+      fetchData()
     }
     if(responseData.error){
       toast.error(responseData?.message)
@@ -201,7 +204,9 @@ const UploadProduct = ({
             placeholder='enter product description' 
             rows={3} 
             onChange={handleOnChange} 
-            name='description' >
+            name='description'
+            value={data.description}
+          >
 
           </textarea>
           
