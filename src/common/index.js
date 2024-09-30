@@ -1,88 +1,88 @@
-const backendDomin = "http://localhost:8080"
+const BASE_URL = "http://localhost:8080"
 
 const SummaryApi = {
     signUP : {
-        url : `${backendDomin}/auth/signup`,
+        url : `${BASE_URL}/auth/signup`,
         method : "post"
     },
     signIn : {
-        url : `${backendDomin}/auth/signin`,
+        url : `${BASE_URL}/auth/signin`,
         method : "post" 
     },
     current_user : {
-        url : `${backendDomin}/api/user-details`,
+        url : `${BASE_URL}/api/user-details`,
         method : "get"
     },
     logout_user : {
-        url : `${backendDomin}/api/userLogout`,
+        url : `${BASE_URL}/api/userLogout`,
         method : "get"
     },
     allUser : {
-        url : `${backendDomin}/api/all-user`,
+        url : `${BASE_URL}/api/all-user`,
         method : "get"
     },
     updateUser : {
-        url : `${backendDomin}/api/update-user`,
+        url : `${BASE_URL}/api/update-user`,
         method : "post"
     },
     uploadProduct : {
-        url : `${backendDomin}/api/upload-product`,
+        url : `${BASE_URL}/api/upload-product`,
         method: "post"
     },
     allProduct : {
-        url : `${backendDomin}/api/get-product`,
+        url : `${BASE_URL}/api/get-product`,
         method : "get"
     },
     updateProduct : {
-        url : `${backendDomin}/api/update-product`,
+        url : `${BASE_URL}/api/update-product`,
         method : "post"
     },
     categoryProduct : {
-        url : `${backendDomin}/api/get-categoryProduct`,
+        url : `${BASE_URL}/api/get-categoryProduct`,
         method : "get"
     },
     categoryWireProduct : {
-        url : `${backendDomin}/api/category-product`,
+        url : `${BASE_URL}/api/category-product`,
         method : "post"
     },
     productDetails : {
-        url : `${backendDomin}/api/product-details`,
+        url : `${BASE_URL}/api/product-details`,
         method : "post"
     },
     addToCartProduct : {
-        url : `${backendDomin}/api/addtocart`,
+        url : `${BASE_URL}/api/addtocart`,
         method : "post"
     },
     addToCartProductCount : {
-        url : `${backendDomin}/api/countAddToCartProduct`,
+        url : `${BASE_URL}/api/countAddToCartProduct`,
         method : "get"
     },
     addToCartProductView :{
-        url : `${backendDomin}/api/view-card-product`,
+        url : `${BASE_URL}/api/view-card-product`,
         method : "get"
     },
     updateCartProduct : {
-        url : `${backendDomin}/api/update-cart-product`,
+        url : `${BASE_URL}/api/update-cart-product`,
         method : 'post'
     },
     deleteCartProduct : {
-        url : `${backendDomin}/api/delete-cart-product`,
+        url : `${BASE_URL}/api/delete-cart-product`,
         method : 'post'
     },
     searchProduct : {
-        url : `${backendDomin}/api/search`,
+        url : `${BASE_URL}/api/search`,
         method : 'get'
     },
     filterProduct : {
-        url : `${backendDomin}/api/filter-product`,
+        url : `${BASE_URL}/api/filter-product`,
         method : 'post'
     },
     saveOrder : {
-        url: `${backendDomin}/api/save-order`,
+        url: `${BASE_URL}/api/save-order`,
         method : 'post'
     },
     allOrders : {
-        url : `${backendDomin}/api/all-orders`,
+        url : `${BASE_URL}/api/all-orders`,
         method : 'get'
     }
 
