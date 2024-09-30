@@ -47,7 +47,7 @@ const AllUsers = () => {
 
   return (
     <div className="bg-white pb-4">
-      <table className="w-full userTable">
+      <table className="w-full userTable text-center">
         <thead>
           <tr className="bg-slate-800 text-white">
             <th>Sr.</th>

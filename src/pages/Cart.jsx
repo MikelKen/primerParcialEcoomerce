@@ -4,12 +4,23 @@ import Context from "../context";
 import displayINRCurrency from "../helpers/displayCurrency";
 import { MdDelete } from "react-icons/md";
 
+import TypePayment from "../components/TypePayment";
+import { Link, useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51Q4BMqK72xbjo9cJ1Z3c37n0P8PCXVwstrwPSgTDCaWRc26X7vvW188749Ra1DlOYdtnRH9iod1pJTXaVmPGxgE900tj364nJ2"
+);
+
 const Cart = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const context = useContext(Context);
+  const  [openTypePayment,setOpenTypePyment] = useState(false)
   //const loadingCart = new Array(4).fill(null)
   const loadingCart = new Array(context.cartProductCount).fill(null);
+  const navite = useNavigate();
 
   const fetchData = async () => {
     const response = await fetch(SummaryApi.addToCartProductView.url, {
@@ -25,6 +36,7 @@ const Cart = () => {
     console.log("los datos de cart ",responseData)
     if (responseData.success) {
       setData(responseData.data);
+      console.log("data de cart000000000: ",responseData.data)
     }
   };
 
@@ -35,7 +47,7 @@ const Cart = () => {
     setLoading(true)
     handleLoaging()
     setLoading(false)
-   // fetchData();
+
   }, []);
 
   const increaseQty = async (id, qty) => {
@@ -53,7 +65,7 @@ const Cart = () => {
     });
 
     const responseData = await response.json();
-
+    console.log("CANTIDAR ",responseData)
     if (responseData.success) {
       fetchData();
     }
@@ -103,8 +115,9 @@ const Cart = () => {
   };
   
   const totalQty = data.reduce((previousValue,currentValue)=> previousValue + currentValue.quantity,0)
-  const totalPrice = data.reduce((preve,curr)=> preve + (curr.quantity * curr?.productId?.sellingPrice) ,0)
-  return (
+  const totalPrice = data.reduce((preve,curr)=> preve + (curr.quantity * curr?.product?.sellingPrice) ,0)
+
+   return (
     <div className="container mx-auto">
       <div className="text-center text-lg my-3">
         {data.length === 0 && !loading && (
@@ -132,7 +145,7 @@ const Cart = () => {
                   >
                     <div className="w-32 h-32 bg-slate-200">
                       <img
-                        src={product?.productId?.productImage[0]}
+                        src={product?.product?.productImage[0]}
                         className="w-full h-full object-scale-down mix-blend-multiply"
                       />
                     </div>
@@ -147,19 +160,19 @@ const Cart = () => {
                       </div>
 
                       <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1">
-                        {product?.productId?.productName}
+                        {product?.product?.productName}
                       </h2>
                       <p className="capitalize text-slate-500">
-                        {product?.productId?.category}
+                        {product?.product?.category}
                       </p>
 
                       <div className="flex items-center justify-between">
                         <p className="text-red-600 font-medium text-lg">
-                          {displayINRCurrency(product?.productId?.sellingPrice)}
+                          {displayINRCurrency(product?.product?.sellingPrice)}
                         </p>
                         <p className="text-slate-600 font-semibold text-lg">
                           {displayINRCurrency(
-                            product?.productId?.sellingPrice * product?.quantity
+                            product?.product?.sellingPrice * product?.quantity
                           )}
                         </p>
                       </div>
@@ -168,7 +181,7 @@ const Cart = () => {
                         <button
                           className="border border-blue-700 text-blue-600 hover:bg-blue-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
                           onClick={() =>
-                            decraseQty(product?._id, product?.quantity)
+                            decraseQty(product?.product?._id, product?.quantity)
                           }
                         >
                           -
@@ -177,7 +190,7 @@ const Cart = () => {
                         <button
                           className="border border-blue-700 text-blue-600 hover:bg-blue-600 hover:text-white w-6 h-6 flex justify-center items-center rounded "
                           onClick={() =>
-                            increaseQty(product?._id, product?.quantity)
+                            increaseQty(product?.product?._id, product?.quantity)
                           }
                         >
                           +
@@ -190,7 +203,7 @@ const Cart = () => {
         </div>
 
         {/**Summary*/}
-        <div className="mt-5 lg:mt-0 w-full max-w-sm">
+        <div className="mt-5 lg:mt-0 w-full max-w-sm border p-4">
           {loading ? (
             <div className="h-36 bg-slate-200 border border-slate-300 animate-pulse">
               Total
@@ -208,11 +221,22 @@ const Cart = () => {
                 <p>{displayINRCurrency(totalPrice)}</p>
               </div>
               
-              <button className="bg-blue-600 p-2 text-white w-full mt-2 rounded-full">
-                Payment
+  
+
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mt-4" onClick={()=>setOpenTypePyment(true)}>
+                Pay Order
               </button>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mt-4" onClick={()=>setOpenTypePyment(true)}>
+                Reserved Order 
+              </button>
+
             </div>
           )}
+           {
+            openTypePayment && (
+              <TypePayment onClose={()=>setOpenTypePyment(false)} totalPrice={totalPrice} fetchData={data} totalQty={totalQty}/>
+               )
+           }
         </div>
       </div>
     </div>

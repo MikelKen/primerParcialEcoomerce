@@ -168,7 +168,9 @@ const SignUp = () => {
 
                     <button className='bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6'>Sign Up</button>
                 </form>
-                <p className='my-4'>Already have account ? <Link to={"/login"} className='text-blue-500 hover:text-blue-600 hover:underline'>Login</Link></p>
+                <p className='my-4'>Already have account ? 
+                    <Link to={"/login"} className='text-blue-500 hover:text-blue-600 hover:underline'>Login</Link>
+                </p>
             </div>
         </div>
     </section>

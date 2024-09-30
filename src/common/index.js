@@ -76,7 +76,16 @@ const SummaryApi = {
     filterProduct : {
         url : `${backendDomin}/api/filter-product`,
         method : 'post'
+    },
+    saveOrder : {
+        url: `${backendDomin}/api/save-order`,
+        method : 'post'
+    },
+    allOrders : {
+        url : `${backendDomin}/api/all-orders`,
+        method : 'get'
     }
+
 }
 
 export default SummaryApi

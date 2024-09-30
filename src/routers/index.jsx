@@ -11,6 +11,8 @@ import CategoryProduct from "../pages/CategoryProduct"
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
 import SearchProduct from "../pages/SearchProduct";
+import TypePayment from "../components/TypePayment";
+import AllOrders from "../pages/AllOrders";
 
 
 const router = createBrowserRouter([
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
                 element : <Cart/>
             },
             {
+                path : "type-payment",
+                element : <TypePayment/>
+            },
+            {
                 path : "search",
                 element : <SearchProduct/>
             },
@@ -61,6 +67,10 @@ const router = createBrowserRouter([
                     {
                         path : "all-products",
                         element : <AllProducts/>
+                    },
+                    {
+                        path : "all-orders",
+                        element : <AllOrders/>
                     }
                 ]
             }
