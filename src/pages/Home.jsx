@@ -9,16 +9,19 @@ const Home = () => {
     <div className=''>
       <CategoryList/>
       <BannerProduct/>
-      <HorizontalCardProduct category={"clothes"} heading={"top-clotes"}/>
-      <HorizontalCardProduct category={"jeans"} heading={"top-Jeans"}/>
-      <HorizontalCardProduct category={"jackets"} heading={"top-jackets"}/>
-      <HorizontalCardProduct category={"skirts"} heading={"top-skirts"}/>
-      <HorizontalCardProduct category={"blazers"} heading={"top-blazers"}/>
-      <HorizontalCardProduct category={"coasts"} heading={"top-coats"}/>
+      <HorizontalCardProduct category={"jerseis"} heading={"Ropa Popular"}/>
+      <VerticalCardProduct category={"blazers"} heading={"Blazers Elegantes"}/>
+      <HorizontalCardProduct category={"jeans"} heading={"Jeans Destacados"}/>
+      <VerticalCardProduct category={"coats"} heading={"Abrigos Recomendados"}/>
+      <HorizontalCardProduct category={"jackets"} heading={"Chaquetas Modernas"}/>
+      <VerticalCardProduct category={"shorts"} heading={"Shorts Favoritos"}/>
+      <HorizontalCardProduct category={"skirts"} heading={"Faldas de Moda"}/>
       
 
-      <VerticalCardProduct category={"shirtsBlouses"} heading={"Popular Blouses"}/>
-      <VerticalCardProduct category={"jeans"} heading={"top-Jeans"}/>
+      <VerticalCardProduct category={"zendas"} heading={"Tendencias de Moda"}/>
+      <VerticalCardProduct category={"caps"} heading={"Gorras Destacadas"}/>
+      <VerticalCardProduct category={"wads"} heading={"Complementos Modernos"}/>
+      <VerticalCardProduct category={"tops"} heading={"Tops Populares"}/>
     </div>
   )
 }

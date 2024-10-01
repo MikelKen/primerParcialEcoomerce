@@ -33,6 +33,7 @@ const Header = () => {
       localStorage.clear();
       toast.success(data.message);
       dispatch(setUserDetails(null));
+      navigate('/')
     }
 
     if (data.error) {

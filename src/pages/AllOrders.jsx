@@ -5,6 +5,8 @@ import moment from "moment";
 import { FaEdit } from "react-icons/fa";
 import ChangeUserRole from "../components/ChangeUserRole";
 import { MdStreetview } from "react-icons/md";
+import DetailOrder from "../components/DetailOrder";
+import { Link } from "react-router-dom";
 
 const AllOrders = () => {
     const [allOrders, setAllOrders] = useState([])
@@ -18,6 +20,7 @@ const AllOrders = () => {
       state: ""
     })
   
+
     const fetchAllOrders = async () => {
       const fetchData = await fetch(SummaryApi.allOrders.url, {
         method: SummaryApi.allOrders.method,
@@ -41,6 +44,8 @@ const AllOrders = () => {
   
       console.log("res data : ", dataResponse);
     };
+
+
   
     useEffect(() => {
       fetchAllOrders();
@@ -78,30 +83,19 @@ const AllOrders = () => {
                   <td>{el?.total}</td>
                   <td>{moment(el?.createdAt).format('LL')}</td>
                   <td>
-                    <button className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white" onClick={()=>{
-                        setUpdateUserDelails(el)
-                        setOpenUpdateRole(true)
-                      }}
-                      >
+                    <Link to={`/order-detail/${el?.id}`} className="text-2xl relative">
+                    <button className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white"  >
                       <MdStreetview/>
                     </button>
+                    </Link>
                   </td>
                 </tr>
               )
             })}
           </tbody>
         </table>
-        {
-          openUpdateRole && (
-            <ChangeUserRole onClose={()=>setOpenUpdateRole(false)}
-              name={updateUserDetails.name}
-              email={updateUserDetails.email}
-              role={updateUserDetails.role}
-              userId={updateUserDetails._id}
-              callFunc={fetchAllUsers}
-            />
-          )
-        }
+       
+
       </div>
     );
 }

@@ -13,6 +13,7 @@ import Cart from "../pages/Cart";
 import SearchProduct from "../pages/SearchProduct";
 import TypePayment from "../components/TypePayment";
 import AllOrders from "../pages/AllOrders";
+import DetailOrder from "../components/DetailOrder";
 
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
                 element : <SearchProduct/>
             },
             {
+                path : "order-detail/:id",
+                element : <DetailOrder/>
+            },
+            {
                 path : "admin-panel",
                 element : <AdminPane/>,
                 children : [
@@ -71,7 +76,7 @@ const router = createBrowserRouter([
                     {
                         path : "all-orders",
                         element : <AllOrders/>
-                    }
+                    },
                 ]
             }
         ]
