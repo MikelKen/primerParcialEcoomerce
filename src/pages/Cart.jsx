@@ -8,6 +8,7 @@ import TypePayment from "../components/TypePayment";
 import { Link, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import Resevation from "../components/Resevation";
 
 const stripePromise = loadStripe(
   "pk_test_51Q4BMqK72xbjo9cJ1Z3c37n0P8PCXVwstrwPSgTDCaWRc26X7vvW188749Ra1DlOYdtnRH9iod1pJTXaVmPGxgE900tj364nJ2"
@@ -18,6 +19,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const context = useContext(Context);
   const  [openTypePayment,setOpenTypePyment] = useState(false)
+  const  [openReservation,setOpenReservation] = useState(false)
   //const loadingCart = new Array(4).fill(null)
   const loadingCart = new Array(context.cartProductCount).fill(null);
   const navite = useNavigate();
@@ -226,7 +228,7 @@ const Cart = () => {
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mt-4" onClick={()=>setOpenTypePyment(true)}>
                 Pay Order
               </button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mt-4" onClick={()=>setOpenTypePyment(true)}>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full mt-4" onClick={()=>setOpenReservation(true)}>
                 Reserved Order 
               </button>
 
@@ -235,6 +237,11 @@ const Cart = () => {
            {
             openTypePayment && (
               <TypePayment onClose={()=>setOpenTypePyment(false)} totalPrice={totalPrice} fetchData={data} totalQty={totalQty}/>
+               )
+           }
+           {
+            openReservation && (
+              <Resevation onClose={()=>setOpenReservation(false)} totalPrice={totalPrice} fetchData={data} totalQty={totalQty}/>
                )
            }
         </div>

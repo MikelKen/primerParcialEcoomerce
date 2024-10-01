@@ -35,15 +35,7 @@ const CheckoutForm = ({
     if(!error){
         const {id}= paymentMethod
 
-        const orderData = {
-            id:id,
-            amount: totalPrice,
-            productDetail: fetchData,
-            state: "Confirmed",
-            totalQty: totalQty
-        }
-     
-        console.log("los datos deorden ::::::::::::::",orderData)
+    
         const dataResponse = await fetch(SummaryApi.saveOrder.url,{
             method : SummaryApi.saveOrder.method,
             headers: {

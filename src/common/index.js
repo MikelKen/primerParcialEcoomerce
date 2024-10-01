@@ -1,4 +1,4 @@
-const BASE_URL = "https://parcialecoomerce.onrender.com"//"http://localhost:8080"
+const BASE_URL = "http://localhost:8080"//"https://parcialecoomerce.onrender.com"//"http://localhost:8080"
 
 const SummaryApi = {
     signUP : {
@@ -88,6 +88,10 @@ const SummaryApi = {
     orderDetail: {
         url : `${BASE_URL}/api/order-detail`,
         method : 'post'
+    },
+    saveReserved : {
+        user : `${BASE_URL}/api/save-reserved`,
+        method: 'post'
     }
 
 }
