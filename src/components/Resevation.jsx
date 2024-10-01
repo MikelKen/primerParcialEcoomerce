@@ -12,8 +12,8 @@ const Resevation = ({ onClose, totalPrice, fetchData, totalQty }) => {
     const handleSubmit = async () => {
 
     
-          const dataResponse = await fetch(SummaryApi.saveReserved.url, {
-            method: SummaryApi.saveReserved.method,
+          const dataResponse = await fetch(SummaryApi.saveOrder.url, {
+            method: SummaryApi.saveOrder.method,
             headers: {
               Accept: "application/json",
               "content-type": "application/json",
